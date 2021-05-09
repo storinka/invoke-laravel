@@ -36,7 +36,7 @@ class Dec2Hex extends LaravelFunction
         ];
     }
     
-    public function handle(int $dec):string
+    public function handle(int $dec): string
     {
         return dechex($dec);
     }
