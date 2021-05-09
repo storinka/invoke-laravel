@@ -25,7 +25,9 @@ Create a function:
 ```php
 // app/Http/Functions/Dec2Hex.php
 
-class Dec2Hex extends \Invoke\Laravel\LaravelFunction
+use Invoke\Laravel\LaravelFunction;
+
+class Dec2Hex extends LaravelFunction
 {
     public static function params() : array
     {
