@@ -1,0 +1,47 @@
+{
+    "name": "storinka/invoke-laravel",
+    "description": "Laravel Invoke integration",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Davyd Kohut",
+            "email": "davyd.kohut@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/contracts": "^8",
+        "illuminate/support": "^8",
+        "storinka/invoke": "^0.0.17"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Invoke\\Laravel\\": "src/"
+        },
+        "files": [
+            "src/types.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Invoke\\Laravel\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Invoke\\Laravel\\Providers\\InvokeProvider"
+            ]
+        }
+    }
+}
