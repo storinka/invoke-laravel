@@ -16,6 +16,7 @@ Register routes in `routes/api.php`:
 use Invoke\Laravel\Facades\Invoke;
 
 Invoke::routes();
+// Invoke::docsRoutes();
 ```
 
 ## Usage

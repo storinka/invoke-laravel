@@ -5,6 +5,7 @@ namespace Invoke\Laravel\Facades;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Route;
 use Invoke\Laravel\Http\Controllers\InvokeController;
+use Invoke\Laravel\Http\Controllers\InvokeDocsController;
 use Invoke\Laravel\Services\InvokeService;
 
 /**
@@ -21,5 +22,10 @@ class Invoke extends Facade
     {
         Route::any("invoke/{functionName}", [InvokeController::class, "invoke"]);
         Route::any("invoke/{version}/{functionName}", [InvokeController::class, "invokeWithVersion"]);
+    }
+
+    public static function docsRoutes()
+    {
+        Route::get("invoke/docs/", [InvokeDocsController::class, "index"]);
     }
 }

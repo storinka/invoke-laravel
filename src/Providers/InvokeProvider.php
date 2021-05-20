@@ -15,6 +15,8 @@ class InvokeProvider extends ServiceProvider
             "strict" => false,
             "reflection" => true,
         ]);
+
+        $this->loadViewsFrom(__DIR__ . "/../../resources/views", "invoke");
     }
 
     public function register()
