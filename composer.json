@@ -15,6 +15,7 @@
         "php": "^7.4|^8.0",
         "illuminate/contracts": "^8",
         "illuminate/support": "^8",
+        "phpdocumentor/reflection-docblock": "^5.2",
         "storinka/invoke": "^0.0.19"
     },
     "require-dev": {
