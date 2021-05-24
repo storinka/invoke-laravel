@@ -16,7 +16,7 @@
         "illuminate/contracts": "^8",
         "illuminate/support": "^8",
         "phpdocumentor/reflection-docblock": "^5.2",
-        "storinka/invoke": "^0.0.19"
+        "storinka/invoke": "^0.0.20"
     },
     "require-dev": {
         "orchestra/testbench": "^6.0",
