@@ -12,9 +12,15 @@ class InvokeController extends Controller
 {
     protected InvokeService $invokeService;
 
-    public function __construct(InvokeService $invokeService)
+    public function __construct(Request $request, InvokeService $invokeService)
     {
         $this->invokeService = $invokeService;
+
+        if ($functionClass = $this->invokeService->getFunctionClass($request->route("functionName"))) {
+            if ($functionClass::$secure) {
+                $this->middleware[] = "auth";
+            }
+        }
     }
 
     public function invoke(Request $request, string $functionName): JsonResponse

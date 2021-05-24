@@ -10,6 +10,7 @@ use Invoke\Laravel\Services\InvokeService;
 
 /**
  * @method invoke(string $functionName, array $params, ?int $version = null)
+ * @method getFunctionClass(string $functionName, ?int $version = null)
  */
 class Invoke extends Facade
 {

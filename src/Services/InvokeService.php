@@ -14,11 +14,19 @@ class InvokeService
         ?int $version = null
     )
     {
-        $functionClass = InvokeMachine::getFunctionClass($functionName, $version);
+        $functionClass = $this->getFunctionClass($functionName, $version);
 
         /** @var InvokeFunction $functionInstance */
         $functionInstance = App::make($functionClass);
 
         return $functionInstance->invoke($params);
+    }
+
+    public function getFunctionClass(
+        string $functionName,
+        ?int $version = null
+    )
+    {
+        return InvokeMachine::getFunctionClass($functionName, $version);
     }
 }
