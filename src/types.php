@@ -63,9 +63,9 @@ if (!function_exists("Regex")) {
 }
 
 if (!function_exists("Rule")) {
-    function Rule($rules): RuleCustomType
+    function Rule($rules, $type = Type::String): RuleCustomType
     {
-        return new RuleCustomType($rules);
+        return new RuleCustomType($rules, $type);
     }
 }
 
