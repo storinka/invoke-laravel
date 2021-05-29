@@ -4,7 +4,6 @@ namespace Invoke\Laravel\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Invoke\Laravel\Services\InvokeService;
 
 trait InvokeControllerTrait
@@ -44,7 +43,7 @@ trait InvokeControllerTrait
 
     public function makeResponse($result): JsonResponse
     {
-        return Response::json([
+        return response()->json([
             "result" => $result,
         ]);
     }
