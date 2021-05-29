@@ -3,11 +3,11 @@
 namespace Invoke\Laravel\Docs\Functions;
 
 use Invoke\InvokeMachine;
-use Invoke\Laravel\LaravelFunction;
+use Invoke\Laravel\AppFunction;
 use Invoke\Typesystem\CustomTypes\TypedArrayCustomType;
 use Invoke\Typesystem\Docs\ClassFunctionDocumentResult;
 
-class DocsGetAllFunctionsFunction extends LaravelFunction
+class DocsGetAllFunctionsFunction extends AppFunction
 {
     public static bool $secure = false;
 

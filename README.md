@@ -1,6 +1,6 @@
 # Invoke Laravel
 
-Invoke Laravel integration package.
+Invoke Laravel/Lumen integration package.
 
 ## Installation
 
@@ -10,13 +10,22 @@ Install package via composer:
 composer require storinka/invoke-laravel
 ```
 
-Register routes in `routes/api.php`:
+Register routes in `routes/api.php` for Laravel:
 
 ```php
 use Invoke\Laravel\Facades\Invoke;
 
 Invoke::routes();
 // Invoke::docsRoutes();
+```
+
+Register routes in `routes/web.php` for Lumen:
+
+```php
+use Invoke\Laravel\Facades\Invoke;
+
+Invoke::lumenRoutes();
+// Invoke::lumenDocsRoutes();
 ```
 
 ## Usage
@@ -26,9 +35,9 @@ Create a function:
 ```php
 // app/Http/Functions/Dec2Hex.php
 
-use Invoke\Laravel\LaravelFunction;
+use Invoke\Laravel\AppFunction;
 
-class Dec2Hex extends LaravelFunction
+class Dec2HexFunction extends AppFunction
 {
     public static function params() : array
     {
@@ -49,11 +58,11 @@ Register the function:
 ```php
 // config/functions.php
 
-use App\Http\Functions\Dec2Hex;
+use App\Http\Functions\Dec2HexFunction;
 
 return [
     0 => [
-        "dec2hex" => Dec2Hex::class,
+        "dec2hex" => Dec2HexFunction::class,
     ],
 ];
 ```

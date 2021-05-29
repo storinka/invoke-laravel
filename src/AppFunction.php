@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Invoke\InvokeFunction;
 
-abstract class LaravelFunction extends InvokeFunction
+abstract class AppFunction extends InvokeFunction
 {
     public static bool $secure = true;
 

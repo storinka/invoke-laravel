@@ -2,9 +2,9 @@
 
 namespace Invoke\Laravel\Http\Controllers;
 
-use Illuminate\Routing\Controller;
+use Laravel\Lumen\Routing\Controller;
 
-class InvokeController extends Controller
+class InvokeLumenController extends Controller
 {
     use InvokeControllerTrait;
 }

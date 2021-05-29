@@ -2,10 +2,10 @@
 
 namespace Invoke\Laravel\Docs\Functions;
 
-use Invoke\Laravel\LaravelFunction;
+use Invoke\Laravel\AppFunction;
 use Invoke\Typesystem\Docs\ClassTypeDocumentResult;
 
-class DocsGetTypeFunction extends LaravelFunction
+class DocsGetTypeFunction extends AppFunction
 {
     public static bool $secure = false;
 
