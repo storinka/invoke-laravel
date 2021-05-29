@@ -17,8 +17,10 @@ class InvokeController extends Controller
         $this->invokeService = $invokeService;
 
         if ($functionClass = $this->invokeService->getFunctionClass($request->route("functionName"))) {
-            if ($functionClass::$secure) {
-                $this->middleware("auth");
+            $authEnabled = config("invoke.auth.enable", true);
+
+            if ($authEnabled && $functionClass::$secure) {
+                $this->middleware(config("invoke.auth.middleware", "auth"));
             }
         }
     }
