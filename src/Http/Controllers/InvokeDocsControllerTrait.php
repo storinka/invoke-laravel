@@ -4,8 +4,8 @@ namespace Invoke\Laravel\Http\Controllers;
 
 trait InvokeDocsControllerTrait
 {
-    public function index(): \Illuminate\Http\Response
+    public function index()
     {
-        return response()->view("invoke::docs.index");
+        return view("invoke::docs.index");
     }
 }
