@@ -5,6 +5,19 @@
         <h1 class="py-5">Invoke Docs</h1>
 
         <section>
+            <p>
+                To invoke a function you have to make a <code>POST</code> request on
+                <code>/api/invoke/{functionName}/</code> or <code>/api/invoke/{version}/{functionName}/</code> with
+                params in the body in JSON format.
+            </p>
+
+            <p>
+                In response you will get a JSON object with <code>result</code> property, which will contain result of
+                the invocation.
+            </p>
+        </section>
+
+        <section class="pt-3">
             <div class="h2">
                 Functions
             </div>
