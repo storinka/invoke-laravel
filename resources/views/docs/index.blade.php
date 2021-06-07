@@ -7,12 +7,12 @@
         <section>
             <p>
                 To invoke a function you have to make a <code>POST</code> request on
-                <code>/api/invoke/{functionName}/</code> or <code>/api/invoke/{version}/{functionName}/</code> with
+                <code>/api/invoke/{functionName}</code> or <code>/api/invoke/{version}/{functionName}</code> with
                 params in the body in JSON format.
             </p>
 
             <p>
-                In response you will get a JSON object with <code>result</code> property, which will contain result of
+                In response you will get a JSON object with <code>result</code> property, which will contain the result of
                 the invocation.
             </p>
         </section>
