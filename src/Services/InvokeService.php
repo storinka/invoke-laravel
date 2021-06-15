@@ -19,7 +19,7 @@ class InvokeService
         /** @var InvokeFunction $functionInstance */
         $functionInstance = App::make($functionClass);
 
-        return $functionInstance->invoke($params);
+        return $functionInstance($params);
     }
 
     public function getFunctionClass(

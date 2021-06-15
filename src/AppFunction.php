@@ -17,12 +17,12 @@ abstract class AppFunction extends InvokeFunction
         return [];
     }
 
-    public function invoke(array $inputParams)
+    public function __invoke(array $inputParams)
     {
         if (static::$secure) {
             $this->user = Auth::user();
         }
 
-        return parent::invoke($inputParams);
+        return parent::__invoke($inputParams);
     }
 }
