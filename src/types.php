@@ -1,77 +1,75 @@
 <?php
 
 use Invoke\Laravel\Types\RuleCustomType;
-use Invoke\Typesystem\CustomTypes\InArrayCustomType;
-use Invoke\Typesystem\CustomTypes\RegexCustomType;
 use Invoke\Typesystem\CustomTypes\TypedArrayCustomType;
-use Invoke\Typesystem\Type;
+use Invoke\Typesystem\Types;
 
 if (!function_exists("Null")) {
     function Null($or): array
     {
-        return Type::Null($or);
+        return Types::Null($or);
     }
 }
 
 if (!function_exists("Some")) {
     function Some(...$of): array
     {
-        return Type::Some(...$of);
+        return Types::Some(...$of);
     }
 }
 
 if (!function_exists("Int")) {
     function Int(int $min = null, int $max = null)
     {
-        return Type::Int($min, $max);
+        return Types::Int($min, $max);
     }
 }
 
 if (!function_exists("Float")) {
     function Float(): string
     {
-        return Type::Float;
+        return Types::Float;
     }
 }
 
 if (!function_exists("Bool")) {
     function Bool(): string
     {
-        return Type::Bool;
+        return Types::Bool;
     }
 }
 
 if (!function_exists("String")) {
     function String(int $minLength = null, $maxLength = null)
     {
-        return Type::String($minLength, $maxLength);
+        return Types::String($minLength, $maxLength);
     }
 }
 
 if (!function_exists("ArrayOf")) {
-    function ArrayOf($type = Type::String, $minSize = null, $maxSize = null): TypedArrayCustomType
+    function ArrayOf($type = Types::String, $minSize = null, $maxSize = null): TypedArrayCustomType
     {
-        return Type::ArrayOf($type, $minSize, $maxSize);
+        return Types::ArrayOf($type, $minSize, $maxSize);
     }
 }
 
 if (!function_exists("Regex")) {
     function Regex(string $pattern): RegexCustomType
     {
-        return Type::Regex($pattern);
+        return Types::Regex($pattern);
     }
 }
 
 if (!function_exists("Rule")) {
-    function Rule($rules, $type = Type::String): RuleCustomType
+    function Rule($rules, $type = Types::String): RuleCustomType
     {
         return new RuleCustomType($rules, $type);
     }
 }
 
 if (!function_exists("In")) {
-    function In(array $values, $type = Type::String): InArrayCustomType
+    function In(array $values, $type = Types::String): InArrayCustomType
     {
-        return Type::In($values, $type);
+        return Types::In($values, $type);
     }
 }

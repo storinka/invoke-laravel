@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33b3c644ab70d923cfde2b0f38d55408",
+    "content-hash": "e7ae660159e86c85694fdc268dafc45e",
     "packages": [
         {
             "name": "brick/math",
@@ -1703,16 +1703,16 @@
         },
         {
             "name": "storinka/invoke",
-            "version": "v0.0.35",
+            "version": "v1.0-BETA-7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/storinka/invoke.git",
-                "reference": "e582deaae3584813434fcdd91d46a278d80548b8"
+                "reference": "71f897c8f355a629169a908612d04f3d23485830"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/storinka/invoke/zipball/e582deaae3584813434fcdd91d46a278d80548b8",
-                "reference": "e582deaae3584813434fcdd91d46a278d80548b8",
+                "url": "https://api.github.com/repos/storinka/invoke/zipball/71f897c8f355a629169a908612d04f3d23485830",
+                "reference": "71f897c8f355a629169a908612d04f3d23485830",
                 "shasum": ""
             },
             "require": {
@@ -1745,9 +1745,9 @@
             "description": "Invoke Core library",
             "support": {
                 "issues": "https://github.com/storinka/invoke/issues",
-                "source": "https://github.com/storinka/invoke/tree/v0.0.35"
+                "source": "https://github.com/storinka/invoke/tree/v1.0-BETA-7"
             },
-            "time": "2021-06-13T02:45:51+00:00"
+            "time": "2021-07-08T22:26:56+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -7188,7 +7188,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4|^8.0"
+        "php": "^7.4|^8.0",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"

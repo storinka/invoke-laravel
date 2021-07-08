@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Invoke\Typesystem\CustomType;
 use Invoke\Typesystem\Exceptions\InvalidParamValueException;
-use Invoke\Typesystem\Type;
+use Invoke\Typesystem\Types;
 
 class RuleCustomType extends CustomType
 {
     protected $rules;
 
-    public function __construct($rules, $type = Type::String)
+    public function __construct($rules, $type = Types::String)
     {
         $this->rules = $rules;
 
-        $this->type = $type;
+        $this->baseType = $type;
     }
 
     public function validate(string $paramName, $value)
