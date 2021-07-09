@@ -54,6 +54,9 @@
                             <basic-params-table :params="param.type.params"/>
                         </tippy>
                         <td v-else :class="{ 'border-end': edit }" v-text="param.type.name"></td>
+                        <td v-if="edit">
+                            <input type="text" v-model="values[param.name]">
+                        </td>
                     </tr>
                 </tbody>
             </table>
