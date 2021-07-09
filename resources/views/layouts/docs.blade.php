@@ -26,13 +26,28 @@
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-json-pretty@1.8.0/lib/vue-json-pretty.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/v-tooltip@2.1.3/dist/v-tooltip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-tippy@4/dist/vue-tippy.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/tippy.js@4/themes/light.css"
+/>
 
 <script>
-    const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    let popoverList = [];
 
-    const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl)
-    });
+    function refreshPopovers() {
+        popoverList.forEach(popover => {
+            popover.disable();
+            popover.dispose();
+        });
+
+        const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+
+        popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl)
+        });
+    }
 </script>
 
 @yield('scripts')

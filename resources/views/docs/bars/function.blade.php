@@ -1,4 +1,38 @@
 <script>
+    const BasicParamsTable = {
+        name: "basic-params-table",
+        template: `
+            <table class="table table-borderless m-0">
+                <thead>
+                <tr class="border-bottom">
+                    <th class="border-end" scope="col">Name</th>
+                    <th scope="col">Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr :class="{ 'border-bottom': i !== params.length - 1 }" :key="param.name" v-for="(param, i) in params">
+                        <td class="border-end" v-text="param.name"></td>
+                        <tippy theme="light" interactive arrow v-if="param.type.params">
+                            <template v-slot:trigger>
+                                <td v-text="param.type.name"></td>
+                            </template>
+
+                            <basic-params-table :params="param.type.params"/>
+                        </tippy>
+                        <td v-else v-text="param.type.name"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        `,
+        props: {
+            params: Array,
+        },
+        beforeCreate: function () {
+            this.$options.components.TreeFolderContents = BasicParamsTable
+        }
+    }
+
     const ParamsTable = {
         template: `
             <table class="table table-borderless m-0">
@@ -12,15 +46,21 @@
                 <tbody>
                     <tr class="border-bottom" :key="param.name" v-for="param in params">
                         <td class="border-end" v-text="param.name"></td>
-                        <td :class="{ 'border-end': edit }" v-text="param.type.name"></td>
+                        <tippy theme="light" interactive arrow v-if="param.type.params">
+                            <template v-slot:trigger>
+                                <td :class="{ 'border-end': edit }" v-text="param.type.name"></td>
+                            </template>
 
-                        <td v-if="edit">
-                            <input type="text" v-model="values[param.name]">
-                        </td>
+                            <basic-params-table :params="param.type.params"/>
+                        </tippy>
+                        <td v-else :class="{ 'border-end': edit }" v-text="param.type.name"></td>
                     </tr>
                 </tbody>
             </table>
             `,
+        components: {
+            BasicParamsTable
+        },
         props: {
             params: Array,
             values: Object,
@@ -116,8 +156,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-5 scrollarea">
-                <div v-if="error" class="p-2" style="max-height: calc(100vh); min-height: calc(100vh);">
+            <div class="col-5 scrollarea" style="max-height: calc(100vh); min-height: calc(100vh);">
+                <div v-if="error" class="p-2">
                     <template v-if="isErrorHtml">
                         <div v-html="error.text"></div>
                     </template>

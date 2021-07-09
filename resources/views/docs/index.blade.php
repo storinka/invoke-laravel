@@ -24,6 +24,9 @@
     @include('invoke::docs.bars.function')
 
     <script>
+        Vue.use(VTooltip)
+        Vue.use(VueTippy);
+
         const app = new Vue({
             el: "#app",
             components: {
