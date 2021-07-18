@@ -16,6 +16,10 @@ class InvokeService
     {
         $functionClass = $this->getFunctionClass($functionName, $version);
 
+        if (function_exists($functionClass)) {
+            return InvokeMachine::invokeNativeFunction($functionClass, $params);
+        }
+
         /** @var InvokeFunction $functionInstance */
         $functionInstance = App::make($functionClass);
 

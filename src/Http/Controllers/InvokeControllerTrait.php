@@ -17,7 +17,7 @@ trait InvokeControllerTrait
         if ($functionClass = $this->invokeService->getFunctionClass($request->route("functionName"))) {
             $authEnabled = config("invoke.auth.enable", true);
 
-            if ($authEnabled && $functionClass::$secure) {
+            if (!function_exists($functionClass) && $authEnabled && $functionClass::$secure) {
                 $this->middleware(config("invoke.auth.middleware", "auth"));
             }
         }
