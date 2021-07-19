@@ -1,3 +1,15 @@
+@if ($functionDocument)
+    <div class="modal fade" id="tsModal" tabindex="-1" aria-labelledby="tsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <pre style="margin: 0;">{{ \Invoke\Laravel\Utils\Typescript::renderFunctionTypes($functionDocument) }}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 <script>
     const BasicParamsTable = {
         name: "basic-params-table",
@@ -83,7 +95,7 @@
 
         const paramsClone = {};
 
-        for (const { name } of functionDocument.params) {
+        for (const {name} of functionDocument.params) {
             if (paramsFromStorage[name]) {
                 paramsClone[name] = paramsFromStorage[name];
             } else {
@@ -120,12 +132,18 @@
                             cancel
                         </button>
 
-                        <button :style="!edit ? 'margin-left: auto;' : null"
-                                class="border-0 fs-5 fw-semibold p-3 px-4"
+                        <button class="border-0 fs-5 fw-semibold p-3 px-4"
+                                @click="tsModal.toggle()"
+                                style="margin-left: auto;"
+                                v-if="!edit">
+                            📋
+                        </button>
+
+                        <button class="border-0 fs-5 fw-semibold p-3 px-4 bg-primary text-white"
                                 @click="onClickInvoke"
                                 v-text="invoking ? 'Invoking...' : 'Invoke'"
                                 :disabled="invoking"
-                                :class="{ 'text-muted': !edit, 'bg-dark': edit, 'text-light': edit }">
+                                :class="{ 'bg-dark': edit, 'text-light': edit }">
                             Invoke
                         </button>
                     </div>
@@ -188,6 +206,8 @@
             return {
                 functionDocument,
 
+                showTypescript: false,
+
                 edit: false,
                 invoking: false,
 
@@ -197,6 +217,8 @@
 
                 values: defaultValues(),
                 accessToken: localStorage.getItem("___invoke___docs___access_token"),
+
+                tsModal: new bootstrap.Modal(document.getElementById("tsModal"))
             };
         },
         computed: {

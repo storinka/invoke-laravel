@@ -2,6 +2,7 @@
 
 use Invoke\Laravel\Types\RuleCustomType;
 use Invoke\Typesystem\CustomTypes\InCustomType;
+use Invoke\Typesystem\CustomTypes\RegexCustomType;
 use Invoke\Typesystem\CustomTypes\TypedArrayCustomType;
 use Invoke\Typesystem\Types;
 
