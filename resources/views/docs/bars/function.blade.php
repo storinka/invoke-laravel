@@ -166,6 +166,14 @@
                         </span>
                     </div>
                     <params-table v-if="functionDocument.result.params" :params="functionDocument.result.params"/>
+                    <template v-for="(type, i) in typesToRender">
+                        <div class="d-flex align-items-center flex-shrink-0 p-2 px-2 link-dark text-decoration-none border-bottom">
+                            <span style="text-align: right; width: 100%;" class="fw-semibold">
+                                <span class="fw-bold" v-text="type.name"></span>
+                            </span>
+                        </div>
+                        <params-table :params="type.params"/>
+                    </template>
 
                     <div v-if="edit"
                          class="d-flex align-items-center flex-shrink-0 link-dark text-decoration-none border-bottom">
@@ -225,6 +233,27 @@
             isErrorHtml() {
                 return this.error instanceof JsonParseError;
             },
+            typesToRender() {
+                const types = [];
+
+                if (this.functionDocument.result.generics) {
+                    this.functionDocument.result.generics.forEach(t => {
+                        if (t.params) {
+                            types.push(t);
+                        }
+                    })
+                }
+
+                if (this.functionDocument.result.some_types) {
+                    this.functionDocument.result.some_types.forEach(t => {
+                        if (t.params) {
+                            types.push(t);
+                        }
+                    })
+                }
+
+                return types;
+            }
         },
         methods: {
             onClickInvoke() {

@@ -141,12 +141,19 @@ class Typescript
             }
         }
 
-
         if ($type->generics) {
-            foreach ($type->generics as $generic) {
-                $typesToRender[] = $generic;
+            foreach ($type->generics as $type) {
+                $typesToRender[] = $type;
 
-                static::meetParams($generic, $typesToRender);
+                static::meetParams($type, $typesToRender);
+            }
+        }
+
+        if ($type->some_types) {
+            foreach ($type->some_types as $type) {
+                $typesToRender[] = $type;
+
+                static::meetParams($type, $typesToRender);
             }
         }
     }
@@ -166,7 +173,7 @@ class Typescript
         $renderedTypes = "";
 
         foreach ($typesToRender as $type) {
-            if (class_exists($type->name)) {
+            if ($type->class && is_string($type->class) && class_exists($type->class)) {
                 $renderedTypes .= Typescript::renderType($type) . "\n";
             }
         }
