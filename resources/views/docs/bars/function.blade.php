@@ -26,12 +26,12 @@
                         <td class="border-end" v-text="param.name"></td>
                         <tippy theme="light" interactive arrow v-if="param.type.params">
                             <template v-slot:trigger>
-                                <td v-text="param.type.name"></td>
+                                <td v-text="param.type.as_string"></td>
                             </template>
 
                             <basic-params-table :params="param.type.params"/>
                         </tippy>
-                        <td v-else v-text="param.type.name"></td>
+                        <td v-else v-text="param.type.as_string"></td>
                     </tr>
                 </tbody>
             </table>
@@ -60,12 +60,12 @@
                         <td class="border-end" v-text="param.name"></td>
                         <tippy theme="light" interactive arrow v-if="param.type.params">
                             <template v-slot:trigger>
-                                <td :class="{ 'border-end': edit }" v-text="param.type.name"></td>
+                                <td :class="{ 'border-end': edit }" v-text="param.type.as_string"></td>
                             </template>
 
                             <basic-params-table :params="param.type.params"/>
                         </tippy>
-                        <td v-else :class="{ 'border-end': edit }" v-text="param.type.name"></td>
+                        <td v-else :class="{ 'border-end': edit }" v-text="param.type.as_string"></td>
                         <td v-if="edit">
                             <input type="text" v-model="values[param.name]">
                         </td>
