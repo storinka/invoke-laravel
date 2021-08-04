@@ -162,7 +162,7 @@
                     <div class="d-flex align-items-center flex-shrink-0 p-2 px-2 link-dark text-decoration-none border-bottom">
                         <span class="fw-semibold">
                             Result:
-                            <span class="fw-bold" v-text="functionDocument.result.name"></span>
+                            <span class="fw-bold" v-text="functionDocument.result.as_string"></span>
                         </span>
                     </div>
                     <params-table v-if="functionDocument.result.params" :params="functionDocument.result.params"/>
