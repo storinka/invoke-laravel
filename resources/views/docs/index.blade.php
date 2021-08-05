@@ -37,9 +37,9 @@
         const $functionsList = document.getElementById("functionsList");
 
         $functionsList.onscroll = event => {
-            localStorage.setItem("invoke-functionsList-scrollY", event.scrollY);
+            localStorage.setItem("invoke-functionsList-scrollTop", event.scrollTop);
         }
 
-        $functionsList.scrollTo(0, Number(localStorage.getItem("invoke-functionsList-scrollY")));
+        $functionsList.scrollTo(0, Number(localStorage.getItem("invoke-functionsList-scrollTop")));
     </script>
 @endsection
