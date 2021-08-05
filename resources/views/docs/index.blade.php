@@ -33,5 +33,13 @@
                 FunctionBar,
             }
         });
+
+        const $functionsList = document.getElementById("functionsList");
+
+        $functionsList.onscroll = event => {
+            localStorage.setItem("invoke-functionsList-scrollY", event.scrollY);
+        }
+
+        $functionsList.scrollTo(0, Number(localStorage.getItem("invoke-functionsList-scrollY")));
     </script>
 @endsection
