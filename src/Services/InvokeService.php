@@ -2,12 +2,20 @@
 
 namespace Invoke\Laravel\Services;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 use Invoke\InvokeFunction;
 use Invoke\InvokeMachine;
 
 class InvokeService
 {
+    public Response $response;
+
+    public function __construct()
+    {
+        $this->response = response();
+    }
+
     public function invoke(
         string $functionName,
         array $params,
