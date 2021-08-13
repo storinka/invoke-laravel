@@ -3,7 +3,8 @@
         <span class="fs-5 fw-semibold">Functions</span>
     </div>
     <div class="list-group list-group-flush border-bottom scrollarea"
-         style="max-height: calc(100vh - 63px); min-height: calc(100vh - 63px);">
+         style="max-height: calc(100vh - 63px); min-height: calc(100vh - 63px);"
+         id="functionsList">
         @foreach($functionsDocuments as $functionDocument)
             <a href="/invoke/docs?function={{ $functionDocument->name }}"
                data-invoke-function-link="true"

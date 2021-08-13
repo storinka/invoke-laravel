@@ -1,3 +1,15 @@
+@if ($functionDocument)
+    <div class="modal fade" id="tsModal" tabindex="-1" aria-labelledby="tsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <pre style="margin: 0;">{{ \Invoke\Laravel\Utils\Typescript::renderFunctionTypes($functionDocument) }}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 <script>
     const BasicParamsTable = {
         name: "basic-params-table",
@@ -14,12 +26,12 @@
                         <td class="border-end" v-text="param.name"></td>
                         <tippy theme="light" interactive arrow v-if="param.type.params">
                             <template v-slot:trigger>
-                                <td v-text="param.type.name"></td>
+                                <td v-text="param.type.as_string"></td>
                             </template>
 
                             <basic-params-table :params="param.type.params"/>
                         </tippy>
-                        <td v-else v-text="param.type.name"></td>
+                        <td v-else v-text="param.type.as_string"></td>
                     </tr>
                 </tbody>
             </table>
@@ -48,12 +60,12 @@
                         <td class="border-end" v-text="param.name"></td>
                         <tippy theme="light" interactive arrow v-if="param.type.params">
                             <template v-slot:trigger>
-                                <td :class="{ 'border-end': edit }" v-text="param.type.name"></td>
+                                <td :class="{ 'border-end': edit }" v-text="param.type.as_string"></td>
                             </template>
 
                             <basic-params-table :params="param.type.params"/>
                         </tippy>
-                        <td v-else :class="{ 'border-end': edit }" v-text="param.type.name"></td>
+                        <td v-else :class="{ 'border-end': edit }" v-text="param.type.as_string"></td>
                         <td v-if="edit">
                             <input type="text" v-model="values[param.name]">
                         </td>
@@ -83,7 +95,7 @@
 
         const paramsClone = {};
 
-        for (const { name } of functionDocument.params) {
+        for (const {name} of functionDocument.params) {
             if (paramsFromStorage[name]) {
                 paramsClone[name] = paramsFromStorage[name];
             } else {
@@ -120,12 +132,18 @@
                             cancel
                         </button>
 
-                        <button :style="!edit ? 'margin-left: auto;' : null"
-                                class="border-0 fs-5 fw-semibold p-3 px-4"
+                        <button class="border-0 fs-5 fw-semibold p-3 px-4"
+                                @click="tsModal.toggle()"
+                                style="margin-left: auto;"
+                                v-if="!edit">
+                            📋
+                        </button>
+
+                        <button class="border-0 fs-5 fw-semibold p-3 px-4 bg-primary text-white"
                                 @click="onClickInvoke"
                                 v-text="invoking ? 'Invoking...' : 'Invoke'"
                                 :disabled="invoking"
-                                :class="{ 'text-muted': !edit, 'bg-dark': edit, 'text-light': edit }">
+                                :class="{ 'bg-dark': edit, 'text-light': edit }">
                             Invoke
                         </button>
                     </div>
@@ -144,10 +162,18 @@
                     <div class="d-flex align-items-center flex-shrink-0 p-2 px-2 link-dark text-decoration-none border-bottom">
                         <span class="fw-semibold">
                             Result:
-                            <span class="fw-bold" v-text="functionDocument.result.name"></span>
+                            <span class="fw-bold" v-text="functionDocument.result.as_string"></span>
                         </span>
                     </div>
                     <params-table v-if="functionDocument.result.params" :params="functionDocument.result.params"/>
+                    <template v-for="(type, i) in typesToRender">
+                        <div class="d-flex align-items-center flex-shrink-0 p-2 px-2 link-dark text-decoration-none border-bottom">
+                            <span style="text-align: right; width: 100%;" class="fw-semibold">
+                                <span class="fw-bold" v-text="type.name"></span>
+                            </span>
+                        </div>
+                        <params-table :params="type.params"/>
+                    </template>
 
                     <div v-if="edit"
                          class="d-flex align-items-center flex-shrink-0 link-dark text-decoration-none border-bottom">
@@ -188,6 +214,8 @@
             return {
                 functionDocument,
 
+                showTypescript: false,
+
                 edit: false,
                 invoking: false,
 
@@ -197,12 +225,35 @@
 
                 values: defaultValues(),
                 accessToken: localStorage.getItem("___invoke___docs___access_token"),
+
+                tsModal: new bootstrap.Modal(document.getElementById("tsModal"))
             };
         },
         computed: {
             isErrorHtml() {
                 return this.error instanceof JsonParseError;
             },
+            typesToRender() {
+                const types = [];
+
+                if (this.functionDocument.result.generics) {
+                    this.functionDocument.result.generics.forEach(t => {
+                        if (t.params) {
+                            types.push(t);
+                        }
+                    })
+                }
+
+                if (this.functionDocument.result.some_types) {
+                    this.functionDocument.result.some_types.forEach(t => {
+                        if (t.params) {
+                            types.push(t);
+                        }
+                    })
+                }
+
+                return types;
+            }
         },
         methods: {
             onClickInvoke() {

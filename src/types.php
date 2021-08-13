@@ -1,6 +1,8 @@
 <?php
 
 use Invoke\Laravel\Types\RuleCustomType;
+use Invoke\Typesystem\CustomTypes\InCustomType;
+use Invoke\Typesystem\CustomTypes\RegexCustomType;
 use Invoke\Typesystem\CustomTypes\TypedArrayCustomType;
 use Invoke\Typesystem\Types;
 
@@ -68,7 +70,7 @@ if (!function_exists("Rule")) {
 }
 
 if (!function_exists("In")) {
-    function In(array $values, $type = Types::String): InArrayCustomType
+    function In(array $values, $type = Types::String): InCustomType
     {
         return Types::In($values, $type);
     }
