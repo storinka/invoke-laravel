@@ -43,7 +43,7 @@ trait InvokeControllerTrait
 
     public function makeResponse($result): JsonResponse
     {
-        return $this->invokeService->response->json([
+        return $this->invokeService->response->setData([
             "result" => $result,
         ]);
     }

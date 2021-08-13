@@ -22,5 +22,6 @@ class InvokeProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton("invoke", InvokeService::class);
+        $this->app->singleton(InvokeService::class, InvokeService::class);
     }
 }

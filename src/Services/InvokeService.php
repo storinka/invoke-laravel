@@ -2,18 +2,18 @@
 
 namespace Invoke\Laravel\Services;
 
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\App;
 use Invoke\InvokeFunction;
 use Invoke\InvokeMachine;
 
 class InvokeService
 {
-    public Response $response;
+    public JsonResponse $response;
 
     public function __construct()
     {
-        $this->response = response();
+        $this->response = new JsonResponse();
     }
 
     public function invoke(
