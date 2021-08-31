@@ -11,10 +11,20 @@ class InvokeProvider extends ServiceProvider
 {
     public function boot()
     {
-        InvokeMachine::setup(Config::get("functions"), Config::get("invoke.configuration", [
-            "strict" => false,
-            "reflection" => true,
-        ]));
+        $functions = Config::get(
+            "functions",
+            []
+        );
+
+        $configuration = Config::get(
+            "invoke.configuration",
+            [
+                "strict" => false,
+                "reflection" => true,
+            ]
+        );
+
+        InvokeMachine::setup($functions, $configuration);
 
         $this->loadViewsFrom(__DIR__ . "/../../resources/views", "invoke");
     }

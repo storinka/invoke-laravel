@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80bb0c023528b9ac16d7553205b32770",
+    "content-hash": "93a7e338afc870f2b1282817811e6535",
     "packages": [
         {
             "name": "brick/math",
@@ -1703,16 +1703,16 @@
         },
         {
             "name": "storinka/invoke",
-            "version": "v1.0-BETA-30",
+            "version": "v1.0-BETA-32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/storinka/invoke.git",
-                "reference": "fbfc4cf9cccb75621314fa74628b2765b81e1122"
+                "reference": "8f18c428fd281e2c35eb077082d395437c6f995f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/storinka/invoke/zipball/fbfc4cf9cccb75621314fa74628b2765b81e1122",
-                "reference": "fbfc4cf9cccb75621314fa74628b2765b81e1122",
+                "url": "https://api.github.com/repos/storinka/invoke/zipball/8f18c428fd281e2c35eb077082d395437c6f995f",
+                "reference": "8f18c428fd281e2c35eb077082d395437c6f995f",
                 "shasum": ""
             },
             "require": {
@@ -1745,9 +1745,9 @@
             "description": "Invoke Core library",
             "support": {
                 "issues": "https://github.com/storinka/invoke/issues",
-                "source": "https://github.com/storinka/invoke/tree/v1.0-BETA-30"
+                "source": "https://github.com/storinka/invoke/tree/v1.0-BETA-32"
             },
-            "time": "2021-08-04T15:54:54+00:00"
+            "time": "2021-08-31T22:56:03+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
