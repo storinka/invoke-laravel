@@ -27,8 +27,8 @@ class Invoke extends Facade
 
     public static function docsRoutes()
     {
-        Route::get("invoke/docs/", [InvokeDocsController::class, "index"])->name("invoke-docs");
-        Route::get("invoke/docs/get-started/", [InvokeDocsController::class, "getStarted"])->name("invoke-docs-getstarted");
+        Route::get("invoke/docs/", [InvokeDocsController::class, "index"]);
+        Route::get("invoke/docs/get-started/", [InvokeDocsController::class, "getStarted"]);
     }
 
     public static function lumenRoutes()
@@ -41,7 +41,7 @@ class Invoke extends Facade
 
     public static function lumenDocsRoutes()
     {
-        Route::get("invoke/docs/", "InvokeDocsController@index")->name("invoke-docs");
-        Route::get("invoke/docs/get-started/", "InvokeDocsController@getStarted")->name("invoke-docs-getstarted");
+        Route::get("invoke/docs/", "InvokeDocsController@index");
+        Route::get("invoke/docs/get-started/", "InvokeDocsController@getStarted");
     }
 }
