@@ -23,7 +23,7 @@
         <b>Request:</b>
         <pre>curl -X POST {{ config("invoke.url", config("app.url") . "/api/invoke") . "/" . \Invoke\InvokeMachine::version() . "/dec2hex" }} \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json" \{!! config("invoke.auth.enable", true) ? "<br>    -H \"Authorization: Bearer YOUR_TOKEN_HERE\"" : "" !!}
+    -H "Accept: application/json" \{!! config("invoke.auth.enable", true) ? "<br>    -H \"Authorization: Bearer YOUR_TOKEN_HERE\" \\" : "" !!}
     --data '{ "dec": 4095 }'</pre>
         <b>Response:</b>
         <pre>{ "result": "fff" }</pre>

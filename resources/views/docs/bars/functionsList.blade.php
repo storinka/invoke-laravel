@@ -9,7 +9,7 @@
          style="max-height: calc(100vh - 63px); min-height: calc(100vh - 63px);"
          id="functionsList">
         <div class="list-group-item list-group-item-action lh-tight" style="padding: 0;">
-            <input id="search" type="text" class="p-3 py-2" style="margin: 0; width: 100%; border: none;" placeholder="Search">
+            <input id="search" type="text" class="p-3 py-2" style="margin: 0; width: 100%; border: none; outline: none;" placeholder="Search">
         </div>
         <a href="/invoke/docs/get-started"
            data-invoke-function-link="true"
