@@ -84,6 +84,7 @@
     };
 
     const functionDocument = {!! json_encode($functionDocument, JSON_UNESCAPED_UNICODE) !!};
+    const authEnabled = {{ config("invoke.auth.enable", true) ? "true" : "false" }};
 
     const defaultValues = () => {
         let paramsFromStorage = localStorage.getItem(`___invoke___docs___params_${functionDocument.name}`);
@@ -175,7 +176,7 @@
                         <params-table :params="type.params"/>
                     </template>
 
-                    <div v-if="edit"
+                    <div v-if="edit && authEnabled"
                          class="d-flex align-items-center flex-shrink-0 link-dark text-decoration-none border-bottom">
                         <input id="accessToken" type="text"
                                style="width: 100%; margin-top: auto; color: coral"
@@ -213,6 +214,7 @@
         data() {
             return {
                 functionDocument,
+                authEnabled,
 
                 showTypescript: false,
 
@@ -297,7 +299,7 @@
                         }
                     }
 
-                    fetch(`{{rtrim(config("invoke.url", env("APP_URL") . "/api"), "/")}}/invoke/${this.functionDocument.name}`, {
+                    fetch(`{{rtrim(config("invoke.url", config("app.url") . "/api/invoke"), "/")}}/${this.functionDocument.name}`, {
                         method: "post",
                         headers,
                         body: JSON.stringify(parsedValues),

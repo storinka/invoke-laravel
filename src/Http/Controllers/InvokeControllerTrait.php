@@ -32,7 +32,7 @@ trait InvokeControllerTrait
         return $this->makeResponse($result);
     }
 
-    public function invokeWithVersion(Request $request, int $version, string $functionName): JsonResponse
+    public function invokeWithVersion(Request $request, $version, string $functionName): JsonResponse
     {
         $params = $request->all();
 

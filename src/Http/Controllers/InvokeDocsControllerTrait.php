@@ -22,4 +22,14 @@ trait InvokeDocsControllerTrait
 
         return view("invoke::docs.index", compact("functionsDocuments", "functionDocument"));
     }
+
+    public function getStarted(Request $request)
+    {
+        $version = InvokeMachine::version();
+
+        $functionsDocuments = Docs::getAllFunctionsDocuments($version);
+        $functionDocument = null;
+
+        return view("invoke::docs.index", compact("functionsDocuments", "functionDocument"));
+    }
 }

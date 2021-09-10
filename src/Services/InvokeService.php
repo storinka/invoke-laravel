@@ -18,8 +18,8 @@ class InvokeService
 
     public function invoke(
         string $functionName,
-        array $params,
-        ?int $version = null
+        array  $params,
+               $version = null
     )
     {
         $functionClass = $this->getFunctionClass($functionName, $version);
@@ -36,7 +36,7 @@ class InvokeService
 
     public function getFunctionClass(
         string $functionName,
-        ?int $version = null
+               $version = null
     )
     {
         return InvokeMachine::getFunctionClass($functionName, $version);
