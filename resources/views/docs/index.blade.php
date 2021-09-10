@@ -10,7 +10,7 @@
             <div class="col-9">
                 <function-bar/>
             </div>
-        @elseif(\Illuminate\Support\Facades\Route::currentRouteName() === "invoke-docs-getstarted")
+        @elseif($page === "get-started")
             <div class="col-9">
                 @include('invoke::docs.bars.get-started')
             </div>

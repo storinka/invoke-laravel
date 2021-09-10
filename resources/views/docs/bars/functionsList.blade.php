@@ -14,7 +14,7 @@
         <a href="/invoke/docs/get-started"
            data-invoke-function-link="true"
            data-search-item="Getting started"
-           class="list-group-item list-group-item-action py-2 lh-tight {{ \Illuminate\Support\Facades\Route::currentRouteName() === "invoke-docs-getstarted" ? "active" : "" }}">
+           class="list-group-item list-group-item-action py-2 lh-tight {{ $page === "get-started" ? "active" : "" }}">
             <div class="d-flex w-100 align-items-center justify-content-between">
                 <strong>Getting started</strong>
             </div>
