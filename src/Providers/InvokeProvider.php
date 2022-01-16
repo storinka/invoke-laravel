@@ -4,7 +4,7 @@ namespace Invoke\Laravel\Providers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
-use Invoke\InvokeMachine;
+use Invoke\Invoke;
 use Invoke\Laravel\Services\InvokeService;
 
 class InvokeProvider extends ServiceProvider
@@ -19,19 +19,23 @@ class InvokeProvider extends ServiceProvider
         $configuration = Config::get(
             "invoke.configuration",
             [
-                "strict" => false,
-                "reflection" => true,
+                "typesystem" => [
+                    "strict" => false,
+                ],
+                "ioc" => [
+                    "makeFn" => fn(string $method, array $dependencies = []) => resolve($method, $dependencies),
+                    "callFn" => fn($method, array $params = []) => app()->call($method, $params),
+                ],
             ]
         );
 
-        InvokeMachine::setup($functions, $configuration);
+        Invoke::setup($functions, $configuration);
 
         $this->loadViewsFrom(__DIR__ . "/../../resources/views", "invoke");
     }
 
     public function register()
     {
-        $this->app->singleton("invoke", InvokeService::class);
         $this->app->singleton(InvokeService::class, InvokeService::class);
     }
 }

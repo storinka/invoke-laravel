@@ -3,9 +3,8 @@
 namespace Invoke\Laravel\Services;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\App;
-use Invoke\InvokeFunction;
-use Invoke\InvokeMachine;
+use Invoke\Invoke;
+use Invoke\Laravel\Http\Controllers\InvokeController;
 
 class InvokeService
 {
@@ -16,29 +15,19 @@ class InvokeService
         $this->response = new JsonResponse();
     }
 
-    public function invoke(
-        string $functionName,
-        array  $params,
-               $version = null
-    )
+    public function invoke(string $name,
+                           array  $params)
     {
-        $functionClass = $this->getFunctionClass($functionName, $version);
-
-        if (function_exists($functionClass)) {
-            return InvokeMachine::invokeNativeFunction($functionClass, $params);
-        }
-
-        /** @var InvokeFunction $functionInstance */
-        $functionInstance = App::make($functionClass);
-
-        return $functionInstance($params);
+        return Invoke::invoke($name, $params);
     }
 
-    public function getFunctionClass(
-        string $functionName,
-               $version = null
-    )
+    public function getMethod(string $name)
     {
-        return InvokeMachine::getFunctionClass($functionName, $version);
+        return Invoke::getMethod($name);
+    }
+
+    public static function routes()
+    {
+        Route::any("invoke/{method}", [InvokeController::class, "invoke"]);
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f335816158141dec105bf3a74899875e",
+    "content-hash": "82b3403d5a662e1876e0bd8924aa0b71",
     "packages": [
         {
             "name": "brick/math",
@@ -1784,23 +1784,23 @@
         },
         {
             "name": "storinka/invoke",
-            "version": "v1.0-BETA-36",
+            "version": "v2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/storinka/invoke.git",
-                "reference": "7ee28f154d054e0cb954d4b09cd73b27d3c169d2"
+                "reference": "c492c6755cbebb66b6dcf68facb5df2fc6fb3bda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/storinka/invoke/zipball/7ee28f154d054e0cb954d4b09cd73b27d3c169d2",
-                "reference": "7ee28f154d054e0cb954d4b09cd73b27d3c169d2",
+                "url": "https://api.github.com/repos/storinka/invoke/zipball/c492c6755cbebb66b6dcf68facb5df2fc6fb3bda",
+                "reference": "c492c6755cbebb66b6dcf68facb5df2fc6fb3bda",
                 "shasum": ""
             },
             "require": {
                 "composer/semver": "^3.2",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "php": "^7.4|^8.0"
+                "php": "^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9"
@@ -1827,9 +1827,9 @@
             "description": "Invoke Core library",
             "support": {
                 "issues": "https://github.com/storinka/invoke/issues",
-                "source": "https://github.com/storinka/invoke/tree/v1.0-BETA-36"
+                "source": "https://github.com/storinka/invoke/tree/v2"
             },
-            "time": "2021-09-12T21:08:32+00:00"
+            "time": "2022-01-16T15:50:09+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
