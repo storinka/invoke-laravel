@@ -1,21 +1,43 @@
 # Invoke Laravel
 
-Invoke integration package for Laravel.
+Invoke with Laravel.
 
 ## Installation
 
-Install package via composer:
+1. Install the package via composer:
 
 ```shell
 composer require storinka/invoke-laravel:^2
 ```
 
-Register routes in `routes/api.php` for Laravel:
+2. Register `InvokeProvider` in the `config/app.php`:
 
 ```php
-use Invoke\Laravel\Services\InvokeService;
+return [
+    // ...
+    
+    "providers" => [
+        // ...
+        \Invoke\Laravel\Providers\InvokeProvider::class,
+    ],
+    
+    // ...
+];
+```
 
-InvokeService::routes();
+3. Register invoke route in the `routes/api.php`:
+
+```php
+Route::any("/invoke/{method}", \Invoke\Laravel\Http\Controllers\InvokeController::class);
+```
+
+4. Create folders for methods, data, types and validators:
+
+```shell
+mkdir app/Http/Methods \
+ app/Http/Data \
+ app/Http/Types \
+ app/Http/Validators
 ```
 
 ## Usage
@@ -23,7 +45,7 @@ InvokeService::routes();
 Create a type:
 
 ```php
-// app/Http/Types/UserResult.php
+// app/Http/Data/UserResult.php
 
 use Invoke\Data;
 
@@ -58,40 +80,38 @@ class GetUserById extends Method
 }
 ```
 
-Register the function:
+Register the method:
 
 ```php
-// config/functions.php
-
-use App\Http\Methods\GetUserById;
+// config/methods.php
 
 return [
-    "getUserById" => GetUserById::class,
+    \App\Http\Methods\GetUserById::class,
 ];
 ```
 
-Make a request to invoke the function:
+Try to invoke:
 
 ```shell
-curl -X POST "http://localhost:8000/api/invoke/getUserById" \
-  -H "Content-Type: application/json" \
-  --data '{ "id": 1 }'
-```
-
-Or open in browser:
-
-```
-http://localhost:8000/api/invoke/getUserById?id=1
+curl 'http://localhost:8000/api/invoke/getUserById?id=1'
 ```
 
 ## Other
 
+### Accessing Invoke
+
+```php
+$invoke = app(\Invoke\Invoke::class);
+
+$invoke->setMethod("someMethod", SomeMethod::class);
+$invoke->registeExtension(SomeExtension::class);
+// etc..
+```
+
 ### Set response headers
 
 ```php
-use Invoke\Laravel\Services\InvokeService;
+$response = app(\Symfony\Component\HttpFoundation\Response::class);
 
-$invokeService = resolve(InvokeService::class);
-
-$invokeService->response->header('X-Some-Header', 'some value');
+$response->header('X-Some-Header', 'some value');
 ```

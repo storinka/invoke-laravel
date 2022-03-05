@@ -2,40 +2,32 @@
 
 namespace Invoke\Laravel\Providers;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Invoke\Container;
 use Invoke\Invoke;
-use Invoke\Laravel\Services\InvokeService;
+use Invoke\Laravel\Internal\LaravelInvokeContainer;
 
 class InvokeProvider extends ServiceProvider
 {
     public function boot()
     {
-        $functions = Config::get(
-            "functions",
-            []
-        );
-
-        $configuration = Config::get(
-            "invoke.configuration",
-            [
-                "typesystem" => [
-                    "strict" => false,
-                ],
-                "ioc" => [
-                    "makeFn" => fn(string $method, array $dependencies = []) => resolve($method, $dependencies),
-                    "callFn" => fn($method, array $params = []) => app()->call($method, $params),
-                ],
-            ]
-        );
-
-        Invoke::setup($functions, $configuration);
-
-        $this->loadViewsFrom(__DIR__ . "/../../resources/views", "invoke");
+        $this->publishes([
+            __DIR__ . '/../../config/invoke.php' => config_path('invoke.php'),
+            __DIR__ . '/../../config/methods.php' => config_path('methods.php'),
+        ]);
     }
 
     public function register()
     {
-        $this->app->singleton(InvokeService::class, InvokeService::class);
+        /// set current Invoke container
+        Container::setCurrent(new LaravelInvokeContainer());
+
+        /// register Invoke dependency as singleton
+        $this->app->singleton(Invoke::class, function () {
+            return Invoke::create(
+                config("methods", []),
+                config("invoke", [])
+            );
+        });
     }
 }
