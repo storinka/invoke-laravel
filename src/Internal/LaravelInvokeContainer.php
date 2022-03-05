@@ -2,11 +2,10 @@
 
 namespace Invoke\Laravel\Internal;
 
-use Illuminate\Support\Facades\App;
 use Invoke\Container\InvokeContainerInterface;
 
 /**
- * Laravel container wrapper for Invoke container. It means that invoke container will use Laravel container to resolve dependencies.
+ * Laravel container wrapper for Invoke container. It means that Invoke container will use Laravel container to resolve dependencies.
  */
 class LaravelInvokeContainer implements InvokeContainerInterface
 {
@@ -51,7 +50,7 @@ class LaravelInvokeContainer implements InvokeContainerInterface
      */
     public function delete(string $id): void
     {
-        App::forgetInstance($id);
+        app()->forgetInstance($id);
     }
 
     /**

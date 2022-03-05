@@ -1,6 +1,6 @@
 {
     "name": "storinka/invoke-laravel",
-    "description": "Laravel Invoke integration",
+    "description": "Invoke Laravel integration plugin.",
     "type": "library",
     "license": "MIT",
     "authors": [

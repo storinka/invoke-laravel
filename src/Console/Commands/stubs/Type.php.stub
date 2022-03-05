@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }};
+ 
+use Invoke\Type;
+
+class {{ class }} implements Type
+{
+    public function pass(mixed $value): mixed
+    {
+        // TODO: Implement pass() method.
+    }
+
+    public static function invoke_getTypeName(): string
+    {
+        // TODO: Implement invoke_getTypeName() method.
+    }
+}

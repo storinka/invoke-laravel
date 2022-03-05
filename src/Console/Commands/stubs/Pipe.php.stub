@@ -1,0 +1,15 @@
+<?php
+
+namespace {{ namespace }};
+ 
+use Invoke\Pipe;
+use Attribute;
+
+#[Attribute]
+class {{ class }} implements Pipe
+{
+    public function pass(mixed $value): mixed
+    {
+        return $value;
+    }
+}

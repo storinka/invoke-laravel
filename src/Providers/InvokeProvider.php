@@ -5,6 +5,11 @@ namespace Invoke\Laravel\Providers;
 use Illuminate\Support\ServiceProvider;
 use Invoke\Container;
 use Invoke\Invoke;
+use Invoke\Laravel\Console\Commands\MakeData;
+use Invoke\Laravel\Console\Commands\MakeMethod;
+use Invoke\Laravel\Console\Commands\MakePipe;
+use Invoke\Laravel\Console\Commands\MakeType;
+use Invoke\Laravel\Console\Commands\MakeValidator;
 use Invoke\Laravel\Internal\LaravelInvokeContainer;
 
 class InvokeProvider extends ServiceProvider
@@ -29,5 +34,15 @@ class InvokeProvider extends ServiceProvider
                 config("invoke", [])
             );
         });
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                MakeMethod::class,
+                MakeData::class,
+                MakeType::class,
+                MakeValidator::class,
+                MakePipe::class,
+            ]);
+        }
     }
 }

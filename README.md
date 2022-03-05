@@ -96,6 +96,53 @@ Try to invoke:
 curl 'http://localhost:8000/api/invoke/getUserById?id=1'
 ```
 
+## Artisan commands
+
+### `invoke:make:method`
+
+Create a new method.
+
+Example:
+```shell
+php artisan invoke:make:method GerUsers
+```
+
+### `invoke:make:data`
+
+Create a new data.
+
+Example:
+```shell
+php artisan invoke:make:data UserData
+```
+
+### `invoke:make:type`
+
+Create a new type.
+
+Example:
+```shell
+php artisan invoke:make:type SomeType
+```
+
+### `invoke:make:validator`
+
+Create a new validator.
+
+Example:
+```shell
+php artisan invoke:make:validator ValidEmail
+```
+
+### `invoke:make:pipe`
+
+Create a new pipe.
+
+Example:
+```shell
+php artisan invoke:make:pipe ToUpperCase
+```
+
 ## Other
 
 ### Accessing Invoke

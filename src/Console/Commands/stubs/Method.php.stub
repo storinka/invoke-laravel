@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+ 
+use Invoke\Method;
+
+class {{ class }} extends Method
+{
+    public function handle()
+    {
+        // TODO: Implement handle() method.
+    }
+}

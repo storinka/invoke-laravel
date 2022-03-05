@@ -1,0 +1,17 @@
+<?php
+
+namespace {{ namespace }};
+ 
+use Invoke\Validator;
+use Attribute;
+
+#[Attribute]
+class {{ class }} implements Validator
+{
+    public function pass(mixed $value): mixed
+    {
+        // TODO: validate value
+
+        return $value;
+    }
+}

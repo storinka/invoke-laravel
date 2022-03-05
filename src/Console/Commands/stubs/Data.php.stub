@@ -1,0 +1,9 @@
+<?php
+
+namespace {{ namespace }};
+ 
+use Invoke\Data;
+
+class {{ class }} extends Data
+{
+}
